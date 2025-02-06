@@ -100,3 +100,11 @@ Referencias:
 Se implementó JwtService para manejar mejor las funciones de jwt provenientes de la importación de jsonwebtoken.
 
 ---
+
+## 5. Implementación Global de AuthGuard
+Protección global de rutas con JWT.  
+Para rutas públicas, se creó el decorador `@Public`.  
+Referencia: [NestJS Guards](https://docs.nestjs.com/guards)
+y complemente la implementación con ayuda de chatgpt
+
+---

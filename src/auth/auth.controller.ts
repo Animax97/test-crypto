@@ -1,11 +1,13 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { RegisterAuthDto, LoginAuthDto } from './dto';
 import { AuthService } from './auth.service';
+import { Public } from 'src/common/decorators/public.decorator';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Public()
   @Post('register')
   /**
    * Handles the registration of a new user.
@@ -17,6 +19,7 @@ export class AuthController {
     return this.authService.createRegister(registerAuthDto);
   }
 
+  @Public()
   @Post('login')
   /**
    * Handles the login request.
