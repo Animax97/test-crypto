@@ -30,3 +30,22 @@ Luego, establecer conexión con DBeaver.
 ```sh
 npx prisma init
 ```
+
+### Definición de Modelos en Prisma:
+- **User** -> Manejo de autenticación de usuarios
+- **Quotation** -> Manejo de cotizaciones de criptomonedas
+
+### Ejecución de Migraciones:
+```sh
+npx prisma migrate dev --name init
+```
+
+---
+
+## 2. Configuración Global de Variables de Entorno
+Referencia: [NestJS Configuration](https://docs.nestjs.com/techniques/configuration)
+
+---
+
+### Configuración y Generación:
+Uso de **GlobalConfig** y **PrismaService**.

@@ -12,3 +12,21 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id Int @default(autoincrement()) @id
+  email String @unique
+  password String
+  createdAt DateTime @default(now())
+}
+
+model Quotation {
+  id String @id @default(uuid())
+  from String
+  to String
+  amount Int
+  rate String
+  convertAmount String
+  timestamp DateTime @default(now())
+  expiresAt DateTime @default(now())
+}
