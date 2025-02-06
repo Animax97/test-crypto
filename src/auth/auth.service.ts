@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { RegisterAuthDto, LoginAuthDto } from './dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 import { resError, resSuccess } from 'src/common/helpers/msg.helper';
 import { JwtService } from 'src/common/jwt/jwt.service';
 
@@ -63,7 +63,7 @@ export class AuthService {
         throw new Error(resError.PASSWORD_INCORRECT);
       }
 
-      const token = this.jwtService.sign({ id: user.id, email: user.email });
+      const token = this.jwtService.signature({ id: user.id, email: user.email });
 
       return token;
     } catch (error) {
