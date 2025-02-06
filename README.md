@@ -198,8 +198,8 @@ nest g resource quote
 ```
 
 ### Endpoints:
-- **GET /quote** -> Obtener todas las cotizaciones
-- **GET /quote/:id** -> Obtener una cotización por ID
+- **POST /quote** -> Obtener una cotización de la api externa y guardarla en mi Base de Datos
+- **GET /quote/:id** -> Obtener una cotización por ID de mi Base de Datos
 
 ### EP /quote:
 Parametros que requiere el body:
