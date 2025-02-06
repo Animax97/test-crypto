@@ -1,3 +1,66 @@
+# 🚀 Levantar la Aplicación NestJS
+
+## 🔥 Ejecutar el Servidor
+
+Para iniciar el servidor en modo *desarrollo*, ejecuta:
+
+sh
+npm run start:dev
+
+
+Para correr en *producción*:
+
+sh
+npm run start
+
+
+## 🌍 Probar la Aplicación
+
+Por defecto, la aplicación estará disponible en:
+
+sh
+http://localhost:4000
+
+
+---
+
+## Variables de Entorno:
+
+- DATABASE_URL=   enlace para completar esta variable: https://www.prisma.io/docs/orm/overview/databases/postgresql#connection-url
+- API_CRYPTO_QUOTE= aqui el link de la variable crypto
+- HTTP_PORT= este suele ser 4000
+- SECRET_KEY= este es uno inventado ej secret21r$&$
+- EXPIRE_KEY= este es un para indicar la expiración ej: '2d'
+- POSTGRES_HOST= este va acorde al que se suele usar en DATABASE_URL
+- POSTGRES_PORT= este va acorde al que se suele usar en DATABASE_URL
+- POSTGRES_USER= este va acorde al que se suele usar en DATABASE_URL
+- POSTGRES_PASS= este va acorde al que se suele usar en DATABASE_URL
+- POSTGRES_DB= este va acorde al que se suele usar en DATABASE_URL
+
+## Levantar Servidor de Postgresql
+- instalar postgresql del siguiente enlace para windows: [https://www.enterprisedb.com/downloads/postgres-postgresql-downloads](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) .
+- configurarlo con una pass, host, port y user que va a ser la misma que usaras en la variable de entorno.
+- teniendo un gestor de base de datos como dbeaver establecer una conexión con la misma configuración que se uso para la instalación anterior.
+
+## 📦 Dependencias Instaladas en el Proyecto
+
+### 🛢 Prisma y PostgreSQL
+- @prisma/client
+- prisma
+
+### ✅ Validación de Datos
+- class-validator
+- class-transformer
+
+### 🔒 Autenticación y Seguridad
+- jsonwebtoken
+- bcrypt
+
+### 🌐 Consumo de APIs Externas y variables de entorno
+- @nestjs/axios
+- @nestjs/config
+- rxjs
+
 # test-crypto
 prueba con nestjs + prisma + postgresql
 
@@ -22,7 +85,7 @@ npm i @nestjs/axios para la conexion con apis externas
 ```
 
 ### Instalación de PostgreSQL:
-Descargar e instalar PostgreSQL desde:  
+Descargar e instalar PostgreSQL desde:
 [https://www.enterprisedb.com/downloads/postgres-postgresql-downloads](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)  
 Luego, establecer conexión con DBeaver.
 
@@ -108,3 +171,58 @@ Referencia: [NestJS Guards](https://docs.nestjs.com/guards)
 y complemente la implementación con ayuda de chatgpt
 
 ---
+
+## 6. Creación del Servicio ApiCryptoService para Consumir la API Externa
+
+### Generación del Servicio:
+```sh
+nest g service apis
+```
+
+### Dependencia usada:
+```sh
+npm install @nestjs/axios
+```
+
+### Referencias:
+- [firstValueFrom (RxJS)](https://rxjs.dev/api/index/function/firstValueFrom)  
+- [NestJS HTTP Module](https://docs.nestjs.com/techniques/http-module)  
+
+---
+
+## 7. Creación del Módulo Quote para Cotizaciones
+
+### Generación del Recurso:
+```sh
+nest g resource quote
+```
+
+### Endpoints:
+- **GET /quote** -> Obtener todas las cotizaciones
+- **GET /quote/:id** -> Obtener una cotización por ID
+
+### EP /quote:
+Parametros que requiere el body:
+- ammount -> number Requerido
+- from -> string Requerido
+- to -> string Requerido
+
+### EP /quote/:id:
+Parametros que requiere por param:
+- id -> string
+
+### Configuración:
+Uso de **ApiCryptoService**.
+
+la mayoria de la documentación dentro del código fue hecha con copilot
+
+solo por poner un ejemplo las de este tipo:
+/**
+   * Creates a new quote based on the provided data.
+   * 
+   * @param {CreateQuoteDto} quoteCreateDto - The data transfer object containing the details for the quote creation.
+   * @returns {Promise<Quotation>} - A promise that resolves to the created quote.
+   * @throws {InternalServerErrorException} - Throws an internal server error exception if the quote creation fails.
+   */
+
+PDA: las columnas *rate* y *convertAmount* se crearon con tipo de dato string porque si se hacia con decimal no mostraba todos los digitos convirtiendo la respuesta con Exponencial.

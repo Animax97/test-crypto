@@ -6,9 +6,10 @@ import GlobalConfig from './config/global.config';
 import { AuthGuard } from './common/guards/jwt.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtService } from './common/jwt/jwt.service';
+import { QuoteModule } from './quote/quote.module';
 
 @Module({
-  imports: [...GlobalConfig, AuthModule],
+  imports: [...GlobalConfig, AuthModule, QuoteModule],
   controllers: [AppController],
   providers: [AppService, JwtService, {
     provide: APP_GUARD,
