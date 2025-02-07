@@ -13,6 +13,6 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  await app.listen(configService.get('HTTP_PORT') ?? 3000);
+  await app.listen(configService.get('HTTP_PORT') ?? 4000);
 }
 bootstrap();

@@ -147,6 +147,7 @@ Parametros que requiere el body:
 Parametros que requiere el body:
 - email -> string
 - password -> string
+La respuesta que devuelve el EP es un token el cual luego se debe usar en la sección authorization dentro de postman pero antes debe seleccionar el auth type y elegir la opción *Bearer Token* luego al ejecutar los demás EP fuera del *login* y *register* ya no tendra problemas de autorización.
 
 ### Service (AuthService):
 Instalación de dependencias para autenticación:
