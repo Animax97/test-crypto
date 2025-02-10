@@ -227,3 +227,6 @@ solo por poner un ejemplo las de este tipo:
    */
 
 PDA: las columnas *rate* y *convertAmount* se crearon con tipo de dato string porque si se hacia con decimal no mostraba todos los digitos convirtiendo la respuesta con Exponencial.
+
+## Adicional
+- se habilito el cors con su configuración para que permita al front acceder a la api
